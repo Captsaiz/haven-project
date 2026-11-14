@@ -2,37 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://bnh3lcx0ou5wn" path="res://assets/Player Sprites/Normal.png" id="1_facm7"]
 [ext_resource type="Texture2D" uid="uid://cdl1811t0p166" path="res://assets/Player Sprites/Bouncy.png" id="1_qdjfq"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_58rhr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_qdjfq")
-}],
-"loop": 1,
-"name": &"Bouncy",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_facm7")
-}],
-"loop": 1,
-"name": &"Normal",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://djbqf4ffnl18e" path="res://scenes/sprite_2d.gd" id="2_qdjfq"]
+[ext_resource type="Texture2D" uid="uid://bofxyy6lfihig" path="res://assets/Player Sprites/Speedy.png" id="4_r2clb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1byfu"]
 radius = 64.327286
 
 [node name="the_ball" type="CharacterBody2D" unique_id=1243603787]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=546460062]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1518122122]
 texture_filter = 1
 texture_repeat = 1
 scale = Vector2(10, 10)
-sprite_frames = SubResource("SpriteFrames_58rhr")
-animation = &"Normal"
+texture = ExtResource("1_facm7")
+script = ExtResource("2_qdjfq")
+textures = Array[Texture2D]([ExtResource("1_facm7"), ExtResource("1_qdjfq"), ExtResource("4_r2clb")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=429053706]
 shape = SubResource("CircleShape2D_1byfu")

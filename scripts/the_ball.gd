@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var floor_ray: RayCast2D = $RayCast2D
+@onready var my_sprite: Sprite2D = $Sprite2D
 
 const MAX_SPEED = 300.0
 const ACCELERATION = 20.0
@@ -15,6 +16,8 @@ var ORIGIN_PLATFORM_Y: float = 0.0
 var LAND_VELOCITY_Y: float = 0.0
 var SPIN_INERTIA: float = 0.0
 
+func _ready() -> void:
+	my_sprite.change_image(0) # setup the_ball texture
 
 func jump() -> void:
 	if is_on_floor():
