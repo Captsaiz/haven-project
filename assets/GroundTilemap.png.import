@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6awiajx8n2yi"
-path="res://.godot/imported/Sticky.png-26c4bfdb45084ca1bc9da85b7ed0fc35.ctex"
+uid="uid://dprivkpag73ny"
+path="res://.godot/imported/GroundTilemap.png-265f64bb3aafb9920e2889b2db1d5bc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Player Sprites/Sticky.png"
-dest_files=["res://.godot/imported/Sticky.png-26c4bfdb45084ca1bc9da85b7ed0fc35.ctex"]
+source_file="res://assets/GroundTilemap.png"
+dest_files=["res://.godot/imported/GroundTilemap.png-265f64bb3aafb9920e2889b2db1d5bc3.ctex"]
 
 [params]
 
