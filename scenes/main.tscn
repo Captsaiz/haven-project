@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://b0kcucpfl6f4u"]
 
+[ext_resource type="PackedScene" uid="uid://buaqdyy7rtwsq" path="res://scenes/the_ball.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://c3ifv0k0fsjlw" path="res://scripts/the_ball.gd" id="2_0wfyh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qdjfq"]
+distance = -182.0
+
 [node name="main" type="Node2D" unique_id=968656600]
+
+[node name="the_ball" parent="." unique_id=1243603787 instance=ExtResource("1_o5qli")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_0wfyh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1918837249]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=947394844]
+position = Vector2(1, 15)
+shape = SubResource("WorldBoundaryShape2D_qdjfq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=939454005]
+limit_enabled = false
+position_smoothing_enabled = true
+
+[connection signal="input_event" from="the_ball" to="the_ball" method="_on_input_event"]
+[connection signal="ready" from="the_ball" to="the_ball" method="_ready"]
