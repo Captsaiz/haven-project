@@ -13,6 +13,7 @@ var LAST_JUMP_VELOCITY: float = 0.0
 var PLATFORM_Y: float = 0.0
 var ORIGIN_PLATFORM_Y: float = 0.0
 var LAND_VELOCITY_Y: float = 0.0
+var SPIN_INERTIA: float = 0.0
 
 
 func jump() -> void:
@@ -25,6 +26,13 @@ func jump() -> void:
 	
 	print("jump pos:" + str(PLATFORM_Y - global_position.y)) # DEBUG
 
+
+func process_rotate() -> void:
+	
+	if is_on_floor():
+		SPIN_INERTIA = remap(velocity.x, -MAX_SPEED, MAX_SPEED, -5, 5)
+		
+	rotation_degrees += SPIN_INERTIA	
 
 func _physics_process(delta: float) -> void:
 	
@@ -55,5 +63,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, target_velocity, ACCELERATION) # speeding up 
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION) # speeding down
-
+	
 	move_and_slide()
+	process_rotate()

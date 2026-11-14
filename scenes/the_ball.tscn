@@ -38,5 +38,5 @@ animation = &"Normal"
 shape = SubResource("CircleShape2D_1byfu")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=276634303]
-position = Vector2(-2, 0)
+position = Vector2(0, 63)
 target_position = Vector2(0, 150)
