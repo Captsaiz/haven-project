@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://buaqdyy7rtwsq" path="res://scenes/the_ball.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c3ifv0k0fsjlw" path="res://scripts/the_ball.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://cbtul0ed7vcwf" path="res://scenes/platform.gd" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://b8g6hkuyd1as2" path="res://assets/NYAN CAT.jpg" id="4_jyhfs"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qdjfq"]
 distance = -182.0
@@ -13,6 +14,11 @@ distance = -182.0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_0wfyh")
 
+[node name="Camera2D" type="Camera2D" parent="the_ball" unique_id=939454005]
+scale = Vector2(2, 2)
+limit_enabled = false
+position_smoothing_enabled = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1918837249]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=947394844]
@@ -20,9 +26,9 @@ position = Vector2(1, 15)
 shape = SubResource("WorldBoundaryShape2D_qdjfq")
 script = ExtResource("3_sugp2")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=939454005]
-limit_enabled = false
-position_smoothing_enabled = true
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1031149962]
+position = Vector2(-11, 695)
+texture = ExtResource("4_jyhfs")
 
 [connection signal="input_event" from="the_ball" to="the_ball" method="_on_input_event"]
 [connection signal="ready" from="the_ball" to="the_ball" method="_ready"]

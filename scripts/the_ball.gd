@@ -23,7 +23,7 @@ func jump() -> void:
 	LAST_JUMP_VELOCITY = JUMP_VELOCITY
 	LAND_VELOCITY_Y = 0.0 # Cancel bounce when manually jumping
 	
-	print("jump pos:" + str(PLATFORM_Y - global_position.y)) 
+	print("jump pos:" + str(PLATFORM_Y - global_position.y)) # DEBUG
 
 
 func _physics_process(delta: float) -> void:
@@ -42,8 +42,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -LAND_VELOCITY_Y / BOUNCE_DIVIDER 
 		LAND_VELOCITY_Y = 0.0 # Reset so it doesn't accidentally bounce again
 
-	# Jump if on the floor OR within 100px above PLATFORM_Y while falling
-	var near_platform := (PLATFORM_Y - global_position.y) < 100 and velocity.y >= 0 # Avoid jump being fully unavailable
+	# Jump if on the floor OR within a tiny Sabove PLATFORM_Y while falling
+	var near_platform := (PLATFORM_Y - global_position.y) < 45 and velocity.y >= 0 # Avoid jump being fully unavailable
 	if Input.is_action_pressed("ui_accept") and (is_on_floor() or near_platform):
 		jump()
 
