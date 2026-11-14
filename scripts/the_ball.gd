@@ -1,38 +1,59 @@
 extends CharacterBody2D
 
+@onready var floor_ray: RayCast2D = $RayCast2D
 
 const MAX_SPEED = 300.0
 const ACCELERATION = 20.0
 const FRICTION = 10.0
 const JUMP_VELOCITY = -500.0
+const BOUNCE_DIVIDER = 2.0
+const MIN_BOUNCE_VELOCITY = 100.0 # Stops tiny endless micro-bounces
+
 var LAST_JUMP_VELOCITY: float = 0.0
+var PLATFORM_Y: float = 0.0
+var ORIGIN_PLATFORM_Y: float = 0.0
+var LAND_VELOCITY_Y: float = 0.0
+
 
 func jump() -> void:
-	# Add jump
-	if Input.is_action_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		LAST_JUMP_VELOCITY = JUMP_VELOCITY
+	if is_on_floor():
+		ORIGIN_PLATFORM_Y = global_position.y
+	
+	velocity.y = JUMP_VELOCITY
+	LAST_JUMP_VELOCITY = JUMP_VELOCITY
+	LAND_VELOCITY_Y = 0.0 # Cancel bounce when manually jumping
+	
+	print("jump pos:" + str(PLATFORM_Y - global_position.y)) 
+
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	
+	# Update PLATFORM_Y dynamically with array detecting the platform below
+	if floor_ray.is_colliding():
+		PLATFORM_Y = floor_ray.get_collision_point().y
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		if Input.is_action_pressed("ui_accept"): jump()
-	
-	if is_on_floor():
-		LAST_JUMP_VELOCITY /= 2
-		velocity.y = LAST_JUMP_VELOCITY
-		
-	if Input.is_action_pressed("ui_accept") and is_on_floor(): jump()
-	
-	# Get the input direction and handle the movement/deceleration.
+		if velocity.y > 0: # Get the fastest before touching the floor velocity
+			LAND_VELOCITY_Y = velocity.y
+
+	# Apply bounce on when touching the floor
+	if is_on_floor() and LAND_VELOCITY_Y > MIN_BOUNCE_VELOCITY:
+		velocity.y = -LAND_VELOCITY_Y / BOUNCE_DIVIDER 
+		LAND_VELOCITY_Y = 0.0 # Reset so it doesn't accidentally bounce again
+
+	# Jump if on the floor OR within 100px above PLATFORM_Y while falling
+	var near_platform := (PLATFORM_Y - global_position.y) < 100 and velocity.y >= 0 # Avoid jump being fully unavailable
+	if Input.is_action_pressed("ui_accept") and (is_on_floor() or near_platform):
+		jump()
+
+	# Horizontal movement
 	var direction := Input.get_axis("ui_left", "ui_right")
+	var target_velocity := direction * MAX_SPEED
 	
-	var target_velocity = direction * MAX_SPEED
 	if direction:
-		velocity.x = move_toward(velocity.x, target_velocity, ACCELERATION)
+		velocity.x = move_toward(velocity.x, target_velocity, ACCELERATION) # speeding up 
 	else:
-		velocity.x = move_toward(velocity.x, 0, FRICTION)
+		velocity.x = move_toward(velocity.x, 0, FRICTION) # speeding down
 
 	move_and_slide()
-	
