@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bnh3lcx0ou5wn" path="res://assets/Player Sprites/Normal.png" id="1_facm7"]
 [ext_resource type="Texture2D" uid="uid://cdl1811t0p166" path="res://assets/Player Sprites/Bouncy.png" id="1_qdjfq"]
-[ext_resource type="Script" uid="uid://djbqf4ffnl18e" path="res://scenes/sprite_2d.gd" id="2_qdjfq"]
+[ext_resource type="Script" uid="uid://djbqf4ffnl18e" path="res://scripts/sprite_2d.gd" id="2_qdjfq"]
 [ext_resource type="Texture2D" uid="uid://bofxyy6lfihig" path="res://assets/Player Sprites/Speedy.png" id="4_r2clb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1byfu"]
