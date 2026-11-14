@@ -1,20 +1,42 @@
 [gd_scene format=3 uid="uid://buaqdyy7rtwsq"]
 
-[ext_resource type="Texture2D" uid="uid://b8g6hkuyd1as2" path="res://assets/NYAN CAT.jpg" id="1_facm7"]
+[ext_resource type="Texture2D" uid="uid://bnh3lcx0ou5wn" path="res://assets/Player Sprites/Normal.png" id="1_facm7"]
+[ext_resource type="Texture2D" uid="uid://cdl1811t0p166" path="res://assets/Player Sprites/Bouncy.png" id="1_qdjfq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
-size = Vector2(465.5, 23)
+[sub_resource type="SpriteFrames" id="SpriteFrames_58rhr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qdjfq")
+}],
+"loop": 1,
+"name": &"Bouncy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_facm7")
+}],
+"loop": 1,
+"name": &"Normal",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1byfu"]
+radius = 64.327286
 
 [node name="the_ball" type="CharacterBody2D" unique_id=1243603787]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1229854996]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_facm7")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=546460062]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_58rhr")
+animation = &"Normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=429053706]
-position = Vector2(0.25, 112.5)
-shape = SubResource("RectangleShape2D_0wfyh")
+shape = SubResource("CircleShape2D_1byfu")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=276634303]
-position = Vector2(0, 124)
+position = Vector2(-2, 0)
 target_position = Vector2(0, 150)
