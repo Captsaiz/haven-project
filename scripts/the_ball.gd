@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 
 	# Jump if on the floor OR within a tiny Sabove PLATFORM_Y while falling
 	var near_platform := (PLATFORM_Y - global_position.y) < 45 and velocity.y >= 0 # Avoid jump being fully unavailable
-	if Input.is_action_pressed("ui_accept") and (is_on_floor() or near_platform):
+	if Input.is_action_pressed("ui_accept") and (is_on_floor() or near_platform) and floor_ray.is_colliding():
 		SPIN_INERTIA = remap(velocity.x, -MAX_SPEED, MAX_SPEED, -5, 5)
 		jump()
 
