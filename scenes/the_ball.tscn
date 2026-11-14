@@ -2,14 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://j3dsk7kf5wej" path="res://assets/Player Sprites/Normal.png" id="1_facm7"]
 [ext_resource type="Texture2D" uid="uid://dhb40pkrrbqey" path="res://assets/Player Sprites/Bouncy.png" id="1_qdjfq"]
-[ext_resource type="Script" uid="uid://djbqf4ffnl18e" path="res://scripts/sprite_2d.gd" id="2_qdjfq"]
+[ext_resource type="Script" uid="uid://djbqf4ffnl18e" path="res://scripts/the_ball_sprite_2d.gd" id="2_qdjfq"]
 [ext_resource type="Texture2D" uid="uid://cao2jfd12t8so" path="res://assets/Player Sprites/Speedy.png" id="4_r2clb"]
 [ext_resource type="Script" uid="uid://t4ftoh5d0soc" path="res://scripts/ray_cast_2d.gd" id="5_7ju6s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1byfu"]
 radius = 64.327286
 
-[node name="the_ball" type="CharacterBody2D" unique_id=1243603787]
+[node name="the_ball" type="CharacterBody2D" unique_id=1243603787 groups=["the_ball"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1518122122]
 texture_filter = 1
@@ -26,3 +26,10 @@ shape = SubResource("CircleShape2D_1byfu")
 position = Vector2(0, 63)
 target_position = Vector2(0, 150)
 script = ExtResource("5_7ju6s")
+
+[node name="death_timer" type="Timer" parent="." unique_id=1353048198]
+process_mode = 3
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="death_timer" to="Sprite2D" method="_on_death_timer_timeout"]

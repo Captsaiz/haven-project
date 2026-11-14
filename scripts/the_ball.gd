@@ -15,9 +15,11 @@ var PLATFORM_Y: float = 0.0
 var ORIGIN_PLATFORM_Y: float = 0.0
 var LAND_VELOCITY_Y: float = 0.0
 var SPIN_INERTIA: float = 0.0
+var SPAWN_POSITION: Vector2
 
 func _ready() -> void:
-	my_sprite.change_image(0) # setup the_ball texture
+	my_sprite.change_image(2) # setup the_ball texture
+	SPAWN_POSITION = global_position
 
 func jump() -> void:
 	if is_on_floor():
@@ -71,3 +73,22 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	process_rotate()
+
+
+func obstacle_death() -> void:
+	visible = false
+	
+	get_tree().call_group("dead_ball", "create_clone", $Sprite2D.current_costume, position, )
+	
+	set_physics_process(false) # disable _physic_process
+	$death_timer.start()
+	
+func _on_death_timer_timeout() -> void:
+	global_position = SPAWN_POSITION
+	
+	SPIN_INERTIA = 0.0
+	velocity = Vector2.ZERO
+	
+	set_physics_process(true)
+	visible = true
+	

@@ -23,6 +23,11 @@ Global="*uid://c0iaathg3qa6b"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+the_ball=""
+dead_ball=""
+
 [input]
 
 ui_accept={

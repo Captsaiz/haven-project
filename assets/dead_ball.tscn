@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://mrgeygcu0v73"]
+[gd_scene format=3 uid="uid://bpkei5tb7wk1k"]
 
 [ext_resource type="Texture2D" uid="uid://bnwltuno6mboa" path="res://assets/Player Sprites/Normal_Corpse.png" id="1_6nbun"]
 [ext_resource type="Script" path="res://assets/dead_sprite_2d.gd" id="2_3yvcx"]

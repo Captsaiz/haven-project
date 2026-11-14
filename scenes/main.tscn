@@ -2,12 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://buaqdyy7rtwsq" path="res://scenes/the_ball.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c3ifv0k0fsjlw" path="res://scripts/the_ball.gd" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bpkei5tb7wk1k" path="res://assets/dead_ball.tscn" id="3_o6xl0"]
 [ext_resource type="Script" uid="uid://cbtul0ed7vcwf" path="res://scripts/platform.gd" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://bk80nx2glcgos" path="res://scripts/dead_ball.gd" id="4_tipki"]
+[ext_resource type="Script" uid="uid://e8imtnerjs6w" path="res://scripts/dead_ball_sprite_2d.gd" id="5_85g3d"]
 [ext_resource type="Script" uid="uid://b7470vf158llx" path="res://scripts/reset_button.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dhcupxjj651vs" path="res://scenes/spike.tscn" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://drn5avdq71frg" path="res://assets/Tilemap.png" id="6_tefeu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qdjfq"]
-distance = -182.0
+distance = -415.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6xl0"]
 texture = ExtResource("6_tefeu")
@@ -44,6 +48,11 @@ sources/0 = SubResource("TileSetAtlasSource_o6xl0")
 
 [node name="main" type="Node2D" unique_id=968656600]
 
+[node name="spike" parent="." unique_id=1575641841 instance=ExtResource("6_o6xl0")]
+z_index = 3
+position = Vector2(601.99994, 40.999996)
+scale = Vector2(5, 5)
+
 [node name="the_ball" parent="." unique_id=1243603787 instance=ExtResource("1_o5qli")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_0wfyh")
@@ -52,6 +61,15 @@ script = ExtResource("2_0wfyh")
 scale = Vector2(2, 2)
 limit_enabled = false
 position_smoothing_enabled = true
+
+[node name="dead_ball" parent="." unique_id=493991780 groups=["dead_ball"] instance=ExtResource("3_o6xl0")]
+visible = false
+position = Vector2(-204, -546)
+scale = Vector2(5, 5)
+script = ExtResource("4_tipki")
+
+[node name="Sprite2D" parent="dead_ball" index="1" unique_id=1146908227]
+script = ExtResource("5_85g3d")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1918837249]
 
@@ -79,5 +97,9 @@ tile_set = SubResource("TileSet_il1yv")
 
 [connection signal="input_event" from="the_ball" to="the_ball" method="_on_input_event"]
 [connection signal="ready" from="the_ball" to="the_ball" method="_ready"]
+[connection signal="timeout" from="the_ball/death_timer" to="the_ball" method="_on_death_timer_timeout"]
 [connection signal="ready" from="StaticBody2D" to="StaticBody2D/CollisionShape2D" method="_on_static_body_2d_ready"]
 [connection signal="button_down" from="UI/MarginContainer/reset_button" to="UI/MarginContainer/reset_button" method="_on_button_down"]
+
+[editable path="the_ball"]
+[editable path="dead_ball"]

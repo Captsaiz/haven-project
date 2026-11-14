@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://mrgeygcu0v73"]
 
 [ext_resource type="Texture2D" uid="uid://bnwltuno6mboa" path="res://assets/Player Sprites/Normal_Corpse.png" id="1_6nbun"]
-[ext_resource type="Script" path="res://assets/dead_sprite_2d.gd" id="2_3yvcx"]
+[ext_resource type="Script" uid="uid://e8imtnerjs6w" path="res://scripts/dead_ball_sprite_2d.gd" id="2_4cf0m"]
 [ext_resource type="Texture2D" uid="uid://cvkkrhivinf06" path="res://assets/Player Sprites/Bouncy_Corpse.png" id="3_ve7ky"]
 [ext_resource type="Texture2D" uid="uid://dqrmrykf7tpkt" path="res://assets/Player Sprites/Speedy_Corpse.png" id="4_88vk6"]
 
@@ -12,13 +12,13 @@ size = Vector2(22, 6)
 position = Vector2(0, -5)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=538894373]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_ve7ky")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1146908227]
 texture_filter = 1
 texture_repeat = 1
 texture = ExtResource("1_6nbun")
-script = ExtResource("2_3yvcx")
+script = ExtResource("2_4cf0m")
 textures = Array[Texture2D]([ExtResource("1_6nbun"), ExtResource("3_ve7ky"), ExtResource("4_88vk6")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=538894373]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_ve7ky")
