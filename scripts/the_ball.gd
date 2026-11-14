@@ -6,7 +6,7 @@ extends CharacterBody2D
 const MAX_SPEED = 300.0
 const ACCELERATION = 20.0
 const FRICTION = 10.0
-const JUMP_VELOCITY = -500.0
+const JUMP_VELOCITY = -600.0
 const BOUNCE_DIVIDER = 2.0
 const MIN_BOUNCE_VELOCITY = 100.0 # Stops tiny endless micro-bounces
 
