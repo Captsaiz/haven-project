@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 	# Update PLATFORM_Y dynamically with array detecting the platform below
 	if floor_ray.is_colliding():
 		PLATFORM_Y = floor_ray.get_collision_point().y
+		print("update: " + str(PLATFORM_Y))
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
