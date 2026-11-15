@@ -169,6 +169,21 @@ position = Vector2(6400, -639)
 scale = Vector2(5, 5)
 script = ExtResource("13_jkv2x")
 
+[node name="Checkpoint2" parent="." unique_id=1876428941 instance=ExtResource("12_a8y0u")]
+position = Vector2(239, -160)
+scale = Vector2(5, 5)
+script = ExtResource("13_jkv2x")
+
+[node name="Checkpoint3" parent="." unique_id=584822406 instance=ExtResource("12_a8y0u")]
+position = Vector2(1602, -160)
+scale = Vector2(5, 5)
+script = ExtResource("13_jkv2x")
+
+[node name="Checkpoint4" parent="." unique_id=621566488 instance=ExtResource("12_a8y0u")]
+position = Vector2(4080, -400)
+scale = Vector2(5, 5)
+script = ExtResource("13_jkv2x")
+
 [node name="map" type="TileMapLayer" parent="." unique_id=1908956926]
 texture_filter = 1
 scale = Vector2(5, 5)
@@ -1017,6 +1032,9 @@ scale = Vector2(5, 5)
 [connection signal="button_down" from="UI/MarginContainer4/sprite_2_button" to="UI/MarginContainer4/sprite_2_button" method="_on_button_down"]
 [connection signal="body_entered" from="void_killzone" to="void_killzone" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint2" to="Checkpoint2" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint3" to="Checkpoint3" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint4" to="Checkpoint4" method="_on_body_entered"]
 
 [editable path="the_ball"]
 [editable path="dead_ball"]
