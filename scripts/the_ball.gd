@@ -20,7 +20,7 @@ var SPIN_INERTIA: float = 0.0
 var SPAWN_POSITION: Vector2
 
 func _ready() -> void:
-	my_sprite.change_image(1) # setup the_ball texture
+	my_sprite.change_image(0) # setup the_ball texture
 	SPAWN_POSITION = global_position
 
 func jump() -> void:
@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 	# Jump if on the floor OR within a tiny Sabove PLATFORM_Y while falling
 	var near_platform := (PLATFORM_Y - global_position.y) < 45 and velocity.y >= 0 # Avoid jump being fully unavailable
 	if Input.is_action_pressed("ui_accept") and (is_on_floor() or near_platform) and floor_ray.is_colliding():
-		if platform_below and platform_below.is_in_group("dead_ball"):
+		if platform_below and platform_below.is_in_group("dead_ball") and platform_below.get_node("Sprite2D").current_costume != 0:
 			var type_sprite = platform_below.get_node("Sprite2D").current_costume
 			dead_ball_effect(type_sprite)
 		else:
