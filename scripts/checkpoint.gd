@@ -1,22 +1,12 @@
 extends Area2D
 
+func _physics_process(_delta: float) -> void:
+	var ball_inside := false
 
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("the_ball"):
-		body.SPAWN_POSITION = global_position
-		
-		Global.ui_visible = true
-		
-		print(Global.ui_visible)
-		
-		print("dan")
-
-
-func _on_body_exited(body: Node2D) -> void:
-	Global.ui_visible = false
+	for body in get_overlapping_bodies(): # turns out better than using entered or exited lmao
+		if body.is_in_group("the_ball"):
+			ball_inside = true
+			body.SPAWN_POSITION = global_position
+			break
 	
-	print(Global.ui_visible)
-	
-	print("dan")
+	Global.ui_visible = ball_inside

@@ -132,6 +132,7 @@ offset_right = 67.0
 offset_bottom = 86.0
 
 [node name="sprite_0_button" type="Button" parent="UI/MarginContainer2" unique_id=636468943]
+visible = false
 layout_mode = 2
 text = "Normal"
 script = ExtResource("8_choun")
@@ -142,6 +143,7 @@ offset_right = 66.0
 offset_bottom = 131.0
 
 [node name="sprite_1_button" type="Button" parent="UI/MarginContainer3" unique_id=149217000]
+visible = false
 layout_mode = 2
 text = "Bouncy"
 script = ExtResource("9_ya4ey")
@@ -152,6 +154,7 @@ offset_right = 68.0
 offset_bottom = 170.0
 
 [node name="sprite_2_button" type="Button" parent="UI/MarginContainer4" unique_id=1881817546]
+visible = false
 layout_mode = 2
 text = "Speed"
 script = ExtResource("10_eb6dy")
@@ -1037,6 +1040,7 @@ script = ExtResource("13_jkv2x")
 [connection signal="button_down" from="UI/MarginContainer4/sprite_2_button" to="UI/MarginContainer4/sprite_2_button" method="_on_button_down"]
 [connection signal="body_entered" from="void_killzone" to="void_killzone" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
+[connection signal="body_exited" from="Checkpoint" to="Checkpoint" method="_on_body_exited"]
 [connection signal="body_entered" from="Checkpoint2" to="Checkpoint2" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoint3" to="Checkpoint3" method="_on_body_entered"]
 [connection signal="body_exited" from="Checkpoint3" to="Checkpoint3" method="_on_body_exited"]
