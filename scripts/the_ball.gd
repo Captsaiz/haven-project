@@ -21,7 +21,7 @@ var SPAWN_POSITION: Vector2
 var DIRECTION: int
 
 func _ready() -> void:
-	my_sprite.change_image(1) # setup the_ball texture
+	my_sprite.change_image(2) # setup the_ball texture
 	SPAWN_POSITION = global_position
 
 func jump() -> void:
