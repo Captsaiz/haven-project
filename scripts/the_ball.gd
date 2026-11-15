@@ -9,7 +9,7 @@ const FRICTION = 10.0
 const BOUNCE_DIVIDER = 2.0
 const MIN_BOUNCE_VELOCITY = 100.0 # Stops tiny endless micro-bounces
 
-var ACCELERATION: float = 20.0
+var ACCELERATION: float = 20.0 # beautiful global var's
 var MAX_SPEED: float = 300.0
 var JUMP_VELOCITY: float = -600.0
 var LAST_JUMP_VELOCITY: float = 0.0
@@ -18,35 +18,16 @@ var ORIGIN_PLATFORM_Y: float = 0.0
 var LAND_VELOCITY_Y: float = 0.0
 var SPIN_INERTIA: float = 0.0
 var SPAWN_POSITION: Vector2
+var DIRECTION: int
 
 func _ready() -> void:
-	my_sprite.change_image(0) # setup the_ball texture
+	my_sprite.change_image(2) # setup the_ball texture
 	SPAWN_POSITION = global_position
 
 func jump() -> void:
 	if is_on_floor():
 		ORIGIN_PLATFORM_Y = global_position.y
 
-	var platform_below = floor_ray.get_collider()
-	
-	if platform_below and platform_below.is_in_group("dead_ball"):
-		var type_sprite = platform_below.get_node("Sprite2D").current_costume
-		
-		if type_sprite == 1:
-			velocity.y = -800.0
-			
-		elif type_sprite == 2:
-			pass
-		
-		else:
-			ACCELERATION = 20.0
-			MAX_SPEED = 300.0
-			JUMP_VELOCITY = -600
-	else:
-		ACCELERATION = 20.0
-		MAX_SPEED = 300.0
-		JUMP_VELOCITY = -600
-	
 	velocity.y = JUMP_VELOCITY
 	LAST_JUMP_VELOCITY = JUMP_VELOCITY
 	LAND_VELOCITY_Y = 0.0 # Cancel bounce when manually jumping
@@ -59,8 +40,15 @@ func dead_ball_effect(type_sprite: int) -> void:
 		jump()
 		JUMP_VELOCITY = -600
 		
+	if type_sprite == 2:
+		MAX_SPEED = 600.0
+		velocity.x = 600 * DIRECTION
+		
 
 func process_rotate() -> void:
+	
+	if velocity.x <= 300.0 or velocity.x >= -300.0:
+		MAX_SPEED = 300.0
 	
 	if is_on_floor():
 		SPIN_INERTIA = remap(velocity.x, -MAX_SPEED, MAX_SPEED, -5, 5)
@@ -103,10 +91,10 @@ func _physics_process(delta: float) -> void:
 		
 
 	# Horizontal movement
-	var direction := Input.get_axis("ui_left", "ui_right")
-	var target_velocity := direction * MAX_SPEED
+	DIRECTION = Input.get_axis("ui_left", "ui_right")
+	var target_velocity := DIRECTION * MAX_SPEED
 	
-	if direction:
+	if DIRECTION:
 		velocity.x = move_toward(velocity.x, target_velocity, ACCELERATION) # speeding up 
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION) # speeding down

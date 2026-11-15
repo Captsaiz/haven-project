@@ -34,6 +34,7 @@ one_shot = true
 
 [node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1817415721]
 position = Vector2(-59, 38)
+rotation = 0.0027602126
 target_position = Vector2(0, 150)
 script = ExtResource("5_7ju6s")
 
