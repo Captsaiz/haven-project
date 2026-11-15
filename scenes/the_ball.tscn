@@ -29,7 +29,7 @@ script = ExtResource("5_7ju6s")
 
 [node name="death_timer" type="Timer" parent="." unique_id=1353048198]
 process_mode = 3
-wait_time = 3.0
+wait_time = 1.2
 one_shot = true
 
 [node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1817415721]
@@ -37,5 +37,7 @@ position = Vector2(-59, 38)
 rotation = 0.0027602126
 target_position = Vector2(0, 150)
 script = ExtResource("5_7ju6s")
+
+[node name="audio_player" type="AudioStreamPlayer2D" parent="." unique_id=842376805]
 
 [connection signal="timeout" from="death_timer" to="Sprite2D" method="_on_death_timer_timeout"]

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var floor_ray: RayCast2D = $RayCast2D
 @onready var my_sprite: Sprite2D = $Sprite2D
-
+@onready var sfx_player: AudioStreamPlayer2D = $audio_player
 
 
 const FRICTION = 10.0
@@ -111,6 +111,9 @@ func obstacle_death() -> void:
 	visible = false
 	
 	get_tree().call_group("dead_ball", "create_clone", $Sprite2D.current_costume, position, )
+	
+	sfx_player.stream = preload("res://assets/sfx/death.mp3")
+	sfx_player.play()
 	
 	$death_timer.start()
 	
