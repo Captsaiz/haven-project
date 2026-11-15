@@ -87,7 +87,7 @@ sources/0 = SubResource("TileSetAtlasSource_o6xl0")
 [node name="main" type="Node2D" unique_id=968656600]
 
 [node name="the_ball" parent="." unique_id=1243603787 instance=ExtResource("1_o5qli")]
-position = Vector2(4237, -225)
+position = Vector2(7434, -1748)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_0wfyh")
 metadata/_edit_group_ = true
@@ -184,6 +184,11 @@ script = ExtResource("13_jkv2x")
 
 [node name="Checkpoint4" parent="." unique_id=621566488 instance=ExtResource("12_a8y0u")]
 position = Vector2(4080.0002, -240.00002)
+scale = Vector2(5, 5)
+script = ExtResource("13_jkv2x")
+
+[node name="Checkpoint5" parent="." unique_id=974030190 instance=ExtResource("12_a8y0u")]
+position = Vector2(7439, -1760.0001)
 scale = Vector2(5, 5)
 script = ExtResource("13_jkv2x")
 
@@ -1024,11 +1029,6 @@ scale = Vector2(5, 5)
 z_index = 3
 position = Vector2(7960, -1720)
 scale = Vector2(5, 5)
-
-[node name="Checkpoint5" parent="." unique_id=974030190 instance=ExtResource("12_a8y0u")]
-position = Vector2(7439, -1760.0001)
-scale = Vector2(5, 5)
-script = ExtResource("13_jkv2x")
 
 [connection signal="input_event" from="the_ball" to="the_ball" method="_on_input_event"]
 [connection signal="ready" from="the_ball" to="the_ball" method="_ready"]
