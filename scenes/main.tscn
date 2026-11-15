@@ -1034,6 +1034,7 @@ scale = Vector2(5, 5)
 [connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoint2" to="Checkpoint2" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoint3" to="Checkpoint3" method="_on_body_entered"]
+[connection signal="body_exited" from="Checkpoint3" to="Checkpoint3" method="_on_body_exited"]
 [connection signal="body_entered" from="Checkpoint4" to="Checkpoint4" method="_on_body_entered"]
 
 [editable path="the_ball"]
