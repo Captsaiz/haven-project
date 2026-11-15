@@ -42,13 +42,14 @@ func dead_ball_effect(type_sprite: int) -> void:
 		
 	if type_sprite == 2:
 		MAX_SPEED = 600.0
-		velocity.x = 600 * DIRECTION
+		var boost_dir = DIRECTION if DIRECTION != 0 else sign(velocity.x)
+		if boost_dir == 0:
+			boost_dir = 1.0 # Default right if completely still
+			
+		velocity.x = 600.0 * boost_dir
 		
 
 func process_rotate() -> void:
-	
-	if velocity.x <= 300.0 or velocity.x >= -300.0:
-		MAX_SPEED = 300.0
 	
 	if is_on_floor():
 		SPIN_INERTIA = remap(velocity.x, -MAX_SPEED, MAX_SPEED, -5, 5)
@@ -56,6 +57,8 @@ func process_rotate() -> void:
 	rotation_degrees += SPIN_INERTIA	
 
 func _physics_process(delta: float) -> void:
+	if abs(velocity.x) <= 300.0:
+		MAX_SPEED = 300.0
 	
 	# Update PLATFORM_Y dynamically with array detecting the platform below
 	if floor_ray.is_colliding():
@@ -79,7 +82,7 @@ func _physics_process(delta: float) -> void:
 		LAND_VELOCITY_Y = 0.0 # Reset so it doesn't accidentally bounce again
 
 	# Jump if on the floor OR within a tiny Sabove PLATFORM_Y while falling
-	var near_platform := (PLATFORM_Y - global_position.y) < 45 and velocity.y >= 0 # Avoid jump being fully unavailable
+	var near_platform := (PLATFORM_Y - global_position.y) < 50 and velocity.y >= 0 # Avoid jump being fully unavailable
 	if Input.is_action_pressed("ui_accept") and (is_on_floor() or near_platform) and floor_ray.is_colliding():
 		if platform_below and platform_below.is_in_group("dead_ball") and platform_below.get_node("Sprite2D").current_costume != 0:
 			var type_sprite = platform_below.get_node("Sprite2D").current_costume
