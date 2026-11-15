@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://23oyssgi3ejv" path="res://scenes/void_killzone.tscn" id="10_trceg"]
 [ext_resource type="Script" uid="uid://cgcsmj8xnchwt" path="res://scripts/void_killzone.gd" id="11_trceg"]
 [ext_resource type="PackedScene" uid="uid://cgh7fqrtwrgg4" path="res://scenes/Checkpoint.tscn" id="12_a8y0u"]
+[ext_resource type="Script" uid="uid://1jxihfewqpwp" path="res://scripts/checkpoint.gd" id="13_jkv2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trceg"]
 size = Vector2(1915, 23.5)
@@ -166,6 +167,7 @@ shape = SubResource("RectangleShape2D_trceg")
 [node name="Checkpoint" parent="." unique_id=1367032924 instance=ExtResource("12_a8y0u")]
 position = Vector2(6400, -639)
 scale = Vector2(5, 5)
+script = ExtResource("13_jkv2x")
 
 [node name="map" type="TileMapLayer" parent="." unique_id=1908956926]
 texture_filter = 1
@@ -1014,6 +1016,7 @@ scale = Vector2(5, 5)
 [connection signal="button_down" from="UI/MarginContainer3/sprite_1_button" to="UI/MarginContainer3/sprite_1_button" method="_on_button_down"]
 [connection signal="button_down" from="UI/MarginContainer4/sprite_2_button" to="UI/MarginContainer4/sprite_2_button" method="_on_button_down"]
 [connection signal="body_entered" from="void_killzone" to="void_killzone" method="_on_body_entered"]
+[connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
 
 [editable path="the_ball"]
 [editable path="dead_ball"]
