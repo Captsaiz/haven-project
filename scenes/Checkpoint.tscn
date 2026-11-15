@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cgh7fqrtwrgg4"]
+
+[ext_resource type="Texture2D" uid="uid://coqmglgh5lm1n" path="res://assets/Checkpoint.png" id="1_s2agh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58rhr"]
+size = Vector2(32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6we3g"]
+atlas = ExtResource("1_s2agh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52r7o"]
+atlas = ExtResource("1_s2agh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deg8p"]
+atlas = ExtResource("1_s2agh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3qto"]
+atlas = ExtResource("1_s2agh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihm5l"]
+atlas = ExtResource("1_s2agh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jexie"]
+atlas = ExtResource("1_s2agh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1byfu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6we3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52r7o")
+}],
+"loop": 0,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deg8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3qto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihm5l")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jexie")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52r7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6we3g")
+}],
+"loop": 0,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="Checkpoint" type="Area2D" unique_id=1367032924]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645895646]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_58rhr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1813130773]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_1byfu")
+animation = &"idle"
