@@ -12,6 +12,10 @@
 [ext_resource type="Script" uid="uid://bk7nd1sijxhbu" path="res://scripts/sprite_1_button.gd" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://dmfgqaariba6w" path="res://scripts/sprite_2_button.gd" id="10_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://23oyssgi3ejv" path="res://scenes/void_killzone.tscn" id="10_trceg"]
+[ext_resource type="Script" uid="uid://cgcsmj8xnchwt" path="res://scripts/void_killzone.gd" id="11_trceg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6dy"]
+size = Vector2(1967.5, 15)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6xl0"]
 texture = ExtResource("6_tefeu")
@@ -152,9 +156,11 @@ script = ExtResource("10_eb6dy")
 
 [node name="void_killzone" parent="." unique_id=146773639 instance=ExtResource("10_trceg")]
 position = Vector2(4890, -54)
+script = ExtResource("11_trceg")
 
-[node name="CollisionShape2D" parent="void_killzone" index="0" unique_id=1568456821]
-position = Vector2(-449, 10)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="void_killzone" unique_id=2026496853]
+position = Vector2(393.25, 44.5)
+shape = SubResource("RectangleShape2D_eb6dy")
 
 [node name="map" type="TileMapLayer" parent="." unique_id=1908956926]
 texture_filter = 1
@@ -432,10 +438,12 @@ scale = Vector2(5, 5)
 [connection signal="input_event" from="the_ball" to="the_ball" method="_on_input_event"]
 [connection signal="ready" from="the_ball" to="the_ball" method="_ready"]
 [connection signal="timeout" from="the_ball/death_timer" to="the_ball" method="_on_death_timer_timeout"]
+[connection signal="timeout" from="the_ball/void_death_timer" to="the_ball" method="_on_void_death_timer_timeout"]
 [connection signal="button_down" from="UI/MarginContainer/reset_button" to="UI/MarginContainer/reset_button" method="_on_button_down"]
 [connection signal="button_down" from="UI/MarginContainer2/sprite_0_button" to="UI/MarginContainer2/sprite_0_button" method="_on_button_down"]
 [connection signal="button_down" from="UI/MarginContainer3/sprite_1_button" to="UI/MarginContainer3/sprite_1_button" method="_on_button_down"]
 [connection signal="button_down" from="UI/MarginContainer4/sprite_2_button" to="UI/MarginContainer4/sprite_2_button" method="_on_button_down"]
+[connection signal="body_entered" from="void_killzone" to="void_killzone" method="_on_body_entered"]
 
 [editable path="the_ball"]
 [editable path="dead_ball"]

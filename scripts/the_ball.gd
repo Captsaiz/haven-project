@@ -129,3 +129,20 @@ func _on_death_timer_timeout() -> void:
 	SPIN_INERTIA = 0.0
 	velocity = Vector2.ZERO
 	
+func void_death() -> void:
+	
+	print("hey")
+	
+	$void_death_timer.start()
+
+func _on_void_death_timer_timeout() -> void:
+	global_position = SPAWN_POSITION
+	
+	SPIN_INERTIA = 0.0
+	velocity = Vector2.ZERO
+	
+	set_physics_process(true)
+	visible = true
+	
+	SPIN_INERTIA = 0.0
+	velocity = Vector2.ZERO
