@@ -123,3 +123,6 @@ func _on_death_timer_timeout() -> void:
 	set_physics_process(true)
 	visible = true
 	
+	SPIN_INERTIA = 0.0
+	velocity = Vector2.ZERO
+	
