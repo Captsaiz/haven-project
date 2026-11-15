@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 		LAND_VELOCITY_Y = 0.0 # Reset so it doesn't accidentally bounce again
 
 	# Jump if on the floor OR within a tiny Sabove PLATFORM_Y while falling
-	var near_platform := (PLATFORM_Y - global_position.y) < 50 and velocity.y >= 0 # Avoid jump being fully unavailable
+	var near_platform := (PLATFORM_Y - global_position.y) < 45 and velocity.y >= 0 # Avoid jump being fully unavailable
 	if Input.is_action_pressed("ui_accept") and (is_on_floor() or near_platform) and floor_ray.is_colliding():
 		if platform_below and platform_below.is_in_group("dead_ball") and platform_below.get_node("Sprite2D").current_costume != 0:
 			var type_sprite = platform_below.get_node("Sprite2D").current_costume

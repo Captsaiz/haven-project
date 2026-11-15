@@ -32,6 +32,11 @@ process_mode = 3
 wait_time = 1.2
 one_shot = true
 
+[node name="void_death_timer" type="Timer" parent="." unique_id=340232830]
+process_mode = 3
+wait_time = 3.0
+one_shot = true
+
 [node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1817415721]
 position = Vector2(-59, 38)
 rotation = 0.0027602126
