@@ -32,7 +32,6 @@ func jump() -> void:
 	LAST_JUMP_VELOCITY = JUMP_VELOCITY
 	LAND_VELOCITY_Y = 0.0 # Cancel bounce when manually jumping
 	
-	print("jump pos:" + str(PLATFORM_Y - global_position.y)) # DEBUG
 
 func dead_ball_effect(type_sprite: int) -> void:
 	if type_sprite == 1:
@@ -63,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	# Update PLATFORM_Y dynamically with array detecting the platform below
 	if floor_ray.is_colliding():
 		PLATFORM_Y = floor_ray.get_collision_point().y
-		print("update: " + str(PLATFORM_Y))
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -131,7 +129,6 @@ func _on_death_timer_timeout() -> void:
 	
 func void_death() -> void:
 	
-	print("hey")
 	
 	$void_death_timer.start()
 
