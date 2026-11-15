@@ -1,7 +1,9 @@
 extends Area2D
+@onready var Anim = $AnimatedSprite2D
 
 func _physics_process(_delta: float) -> void:
 	var ball_inside := false
+	Anim.play("default")
 	for body in get_overlapping_bodies():
 		if body.is_in_group("the_ball"):
 			ball_inside = true
