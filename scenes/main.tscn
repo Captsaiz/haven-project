@@ -87,7 +87,7 @@ sources/0 = SubResource("TileSetAtlasSource_o6xl0")
 [node name="main" type="Node2D" unique_id=968656600]
 
 [node name="the_ball" parent="." unique_id=1243603787 instance=ExtResource("1_o5qli")]
-position = Vector2(7434, -1748)
+position = Vector2(3914, -264)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_0wfyh")
 metadata/_edit_group_ = true
@@ -107,7 +107,6 @@ limit_enabled = false
 position_smoothing_enabled = true
 
 [node name="dead_ball" parent="." unique_id=493991780 groups=["dead_ball"] instance=ExtResource("3_o6xl0")]
-visible = false
 position = Vector2(-204, -546)
 scale = Vector2(5, 5)
 script = ExtResource("4_tipki")

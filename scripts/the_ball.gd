@@ -37,10 +37,15 @@ func dead_ball_effect(type_sprite: int) -> void:
 	if type_sprite == 1:
 		JUMP_VELOCITY = -800
 		jump()
+		sfx_player.stream = preload("res://assets/sfx/bounce.mp3")
+		sfx_player.play(0.37)
+		
 		JUMP_VELOCITY = -600
 		
 	if type_sprite == 2:
 		MAX_SPEED = 1000.0
+		sfx_player.stream = preload("res://assets/sfx/speed boost.mp3")
+		sfx_player.play(0.17)
 		var boost_dir = DIRECTION if DIRECTION != 0 else sign(velocity.x)
 		if boost_dir == 0:
 			boost_dir = 1.0 # Default right if completely still
