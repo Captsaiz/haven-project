@@ -57,6 +57,7 @@ func dead_ball_effect(type_sprite: int) -> void:
 	if type_sprite == 1:
 		JUMP_VELOCITY = -800
 		jump()
+		JUMP_VELOCITY = -600
 		
 
 func process_rotate() -> void:
