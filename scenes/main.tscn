@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://b7470vf158llx" path="res://scripts/reset_button.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dhcupxjj651vs" path="res://scenes/spike.tscn" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://drn5avdq71frg" path="res://assets/Tilemap.png" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://dvwx3hrmhtgnx" path="res://scripts/sprite_0_button.gd" id="8_choun"]
+[ext_resource type="Script" uid="uid://bk7nd1sijxhbu" path="res://scripts/sprite_1_button.gd" id="9_ya4ey"]
+[ext_resource type="Script" uid="uid://dmfgqaariba6w" path="res://scripts/sprite_2_button.gd" id="10_eb6dy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qdjfq"]
 distance = -415.0
@@ -99,6 +102,7 @@ script = ExtResource("4_tipki")
 script = ExtResource("5_85g3d")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1918837249]
+position = Vector2(-28, -13)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=947394844]
 position = Vector2(1, 15)
@@ -115,6 +119,36 @@ offset_bottom = 40.0
 layout_mode = 2
 text = "Reset"
 script = ExtResource("5_tbgi4")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI" unique_id=442092730]
+offset_top = 44.0
+offset_right = 67.0
+offset_bottom = 86.0
+
+[node name="sprite_0_button" type="Button" parent="UI/MarginContainer2" unique_id=636468943]
+layout_mode = 2
+text = "Normal"
+script = ExtResource("8_choun")
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI" unique_id=1694917048]
+offset_top = 92.0
+offset_right = 66.0
+offset_bottom = 131.0
+
+[node name="sprite_1_button" type="Button" parent="UI/MarginContainer3" unique_id=149217000]
+layout_mode = 2
+text = "Bouncy"
+script = ExtResource("9_ya4ey")
+
+[node name="MarginContainer4" type="MarginContainer" parent="UI" unique_id=191574549]
+offset_top = 135.0
+offset_right = 68.0
+offset_bottom = 170.0
+
+[node name="sprite_2_button" type="Button" parent="UI/MarginContainer4" unique_id=1881817546]
+layout_mode = 2
+text = "Speed"
+script = ExtResource("10_eb6dy")
 
 [node name="tutorial" type="TileMapLayer" parent="." unique_id=1908956926]
 texture_filter = 1
@@ -301,6 +335,9 @@ scale = Vector2(5, 5)
 [connection signal="timeout" from="the_ball/death_timer" to="the_ball" method="_on_death_timer_timeout"]
 [connection signal="ready" from="StaticBody2D" to="StaticBody2D/CollisionShape2D" method="_on_static_body_2d_ready"]
 [connection signal="button_down" from="UI/MarginContainer/reset_button" to="UI/MarginContainer/reset_button" method="_on_button_down"]
+[connection signal="button_down" from="UI/MarginContainer2/sprite_0_button" to="UI/MarginContainer2/sprite_0_button" method="_on_button_down"]
+[connection signal="button_down" from="UI/MarginContainer3/sprite_1_button" to="UI/MarginContainer3/sprite_1_button" method="_on_button_down"]
+[connection signal="button_down" from="UI/MarginContainer4/sprite_2_button" to="UI/MarginContainer4/sprite_2_button" method="_on_button_down"]
 
 [editable path="the_ball"]
 [editable path="dead_ball"]
