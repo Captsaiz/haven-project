@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dmfgqaariba6w" path="res://scripts/sprite_2_button.gd" id="10_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://23oyssgi3ejv" path="res://scenes/void_killzone.tscn" id="10_trceg"]
 [ext_resource type="Script" uid="uid://cgcsmj8xnchwt" path="res://scripts/void_killzone.gd" id="11_trceg"]
+[ext_resource type="PackedScene" uid="uid://cgh7fqrtwrgg4" path="res://scenes/Checkpoint.tscn" id="12_a8y0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trceg"]
 size = Vector2(1915, 23.5)
@@ -161,6 +162,10 @@ script = ExtResource("11_trceg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="void_killzone" unique_id=81866674]
 position = Vector2(370.5, 42.75)
 shape = SubResource("RectangleShape2D_trceg")
+
+[node name="Checkpoint" parent="." unique_id=1367032924 instance=ExtResource("12_a8y0u")]
+position = Vector2(6400, -639)
+scale = Vector2(5, 5)
 
 [node name="map" type="TileMapLayer" parent="." unique_id=1908956926]
 texture_filter = 1
