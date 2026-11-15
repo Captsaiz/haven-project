@@ -23,7 +23,7 @@ textures = Array[Texture2D]([ExtResource("1_facm7"), ExtResource("1_qdjfq"), Ext
 shape = SubResource("CircleShape2D_1byfu")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=276634303]
-position = Vector2(0, 63)
+position = Vector2(55, 34)
 target_position = Vector2(0, 150)
 script = ExtResource("5_7ju6s")
 
@@ -31,5 +31,10 @@ script = ExtResource("5_7ju6s")
 process_mode = 3
 wait_time = 3.0
 one_shot = true
+
+[node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1817415721]
+position = Vector2(-59, 38)
+target_position = Vector2(0, 150)
+script = ExtResource("5_7ju6s")
 
 [connection signal="timeout" from="death_timer" to="Sprite2D" method="_on_death_timer_timeout"]

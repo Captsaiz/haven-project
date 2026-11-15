@@ -3,13 +3,15 @@ extends CharacterBody2D
 @onready var floor_ray: RayCast2D = $RayCast2D
 @onready var my_sprite: Sprite2D = $Sprite2D
 
-const MAX_SPEED = 300.0
-const ACCELERATION = 20.0
+
+
 const FRICTION = 10.0
-const JUMP_VELOCITY = -600.0
 const BOUNCE_DIVIDER = 2.0
 const MIN_BOUNCE_VELOCITY = 100.0 # Stops tiny endless micro-bounces
 
+var ACCELERATION: float = 20.0
+var MAX_SPEED: float = 300.0
+var JUMP_VELOCITY: float = -600.0
 var LAST_JUMP_VELOCITY: float = 0.0
 var PLATFORM_Y: float = 0.0
 var ORIGIN_PLATFORM_Y: float = 0.0
@@ -18,12 +20,32 @@ var SPIN_INERTIA: float = 0.0
 var SPAWN_POSITION: Vector2
 
 func _ready() -> void:
-	my_sprite.change_image(2) # setup the_ball texture
+	my_sprite.change_image(1) # setup the_ball texture
 	SPAWN_POSITION = global_position
 
 func jump() -> void:
 	if is_on_floor():
 		ORIGIN_PLATFORM_Y = global_position.y
+
+	var platform_below = floor_ray.get_collider()
+	
+	if platform_below and platform_below.is_in_group("dead_ball"):
+		var type_sprite = platform_below.get_node("Sprite2D").current_costume
+		
+		if type_sprite == 1:
+			velocity.y = -800.0
+			
+		elif type_sprite == 2:
+			pass
+		
+		else:
+			ACCELERATION = 20.0
+			MAX_SPEED = 300.0
+			JUMP_VELOCITY = -600
+	else:
+		ACCELERATION = 20.0
+		MAX_SPEED = 300.0
+		JUMP_VELOCITY = -600
 	
 	velocity.y = JUMP_VELOCITY
 	LAST_JUMP_VELOCITY = JUMP_VELOCITY
@@ -31,6 +53,11 @@ func jump() -> void:
 	
 	print("jump pos:" + str(PLATFORM_Y - global_position.y)) # DEBUG
 
+func dead_ball_effect(type_sprite: int) -> void:
+	if type_sprite == 1:
+		JUMP_VELOCITY = -800
+		jump()
+		
 
 func process_rotate() -> void:
 	
@@ -50,7 +77,13 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		if velocity.y > 0: # Get the fastest before touching the floor velocity
 			LAND_VELOCITY_Y = velocity.y
-
+	
+	var platform_below = floor_ray.get_collider()
+	if platform_below and platform_below.is_in_group("dead_ball") and is_on_floor():
+		var type_sprite = platform_below.get_node("Sprite2D").current_costume
+		dead_ball_effect(type_sprite)
+		
+	
 	# Apply bounce on when touching the floor
 	if is_on_floor() and LAND_VELOCITY_Y > MIN_BOUNCE_VELOCITY:
 		velocity.y = -LAND_VELOCITY_Y / BOUNCE_DIVIDER 
@@ -76,11 +109,11 @@ func _physics_process(delta: float) -> void:
 
 
 func obstacle_death() -> void:
+	set_physics_process(false) # disable _physic_process
 	visible = false
 	
 	get_tree().call_group("dead_ball", "create_clone", $Sprite2D.current_costume, position, )
 	
-	set_physics_process(false) # disable _physic_process
 	$death_timer.start()
 	
 func _on_death_timer_timeout() -> void:
