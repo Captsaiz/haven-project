@@ -178,9 +178,10 @@ scale = Vector2(5, 5)
 script = ExtResource("13_jkv2x")
 
 [node name="Checkpoint3" parent="." unique_id=584822406 instance=ExtResource("12_a8y0u")]
-position = Vector2(1602, -160)
+position = Vector2(1600, -1.7523766e-05)
 scale = Vector2(5, 5)
 script = ExtResource("13_jkv2x")
+metadata/_edit_group_ = true
 
 [node name="Checkpoint4" parent="." unique_id=621566488 instance=ExtResource("12_a8y0u")]
 position = Vector2(4080.0002, -240.00002)
