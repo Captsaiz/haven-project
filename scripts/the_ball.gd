@@ -41,12 +41,12 @@ func dead_ball_effect(type_sprite: int) -> void:
 		JUMP_VELOCITY = -600
 		
 	if type_sprite == 2:
-		MAX_SPEED = 600.0
+		MAX_SPEED = 1000.0
 		var boost_dir = DIRECTION if DIRECTION != 0 else sign(velocity.x)
 		if boost_dir == 0:
 			boost_dir = 1.0 # Default right if completely still
 			
-		velocity.x = 600.0 * boost_dir
+		velocity.x = 1000.0 * boost_dir
 		
 
 func process_rotate() -> void:
